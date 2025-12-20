@@ -11,7 +11,7 @@ class MixtureOfExperts(nn.Module):
         super(MixtureOfExperts, self).__init__()
         self.num_experts = num_experts
         self.expert_dim = expert_dim
-        self.k = max(1, num_experts // 4)  # Select top-k experts
+        self.k = max(1, num_experts // 4)  # Select top-k experts, if k=1, it becomes Top-1 MoE
 
         self.experts = nn.ModuleList([nn.Sequential(
             nn.Linear(input_dim, expert_dim),
