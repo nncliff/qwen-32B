@@ -6,8 +6,8 @@ def generate_random_matrix(rows: int, cols: int) -> np.ndarray:
 
 def quantize_to_int8(matrix: np.ndarray) -> np.ndarray:
     # Quantizes the input matrix to int8
-    scale = np.max(np.abs(matrix)) / 127  # Scale factor for int8
-    quantized = np.round(matrix / scale).astype(np.int8)
+    scale = np.max(np.abs(matrix)) / 127  # Scale factor for int8 (-128 to 127, signed 8-bit integer)
+    quantized = np.round(matrix / scale).astype(np.int8) # Ensure values fit in int8 range (round and cast)
     return quantized, scale
 
 def dequantize_from_int8(quantized: np.ndarray, scale: float) -> np.ndarray:
